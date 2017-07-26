@@ -16,10 +16,11 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
-from profiles.views import register
-
+from profiles.views import register, login
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^posts/', include('posts.urls')),
-    url(r'^register/', register)
+    url(r'^register/', register, name="register"),
+    url(r'^login/', login, name="login"),
+    url(r'^users/', include('profiles.urls'))
 ]
