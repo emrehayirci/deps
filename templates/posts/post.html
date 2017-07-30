@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.body }}</p>
-        <div class="panel">looasldaosdlol</div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ post.title }}</h3>
+        </div>
+        <div class="panel-body">
+            <p>{{ post.body }}</p>
+        </div>
+        <div class="panel-footer">
+            Yazar: {{ post.author.username }} Tarih: {{ post.creation_date }}
+        </div>
     </div>
 
 

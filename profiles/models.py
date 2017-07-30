@@ -38,7 +38,10 @@ class MyUserManager(BaseUserManager):
 EducationTypes = ((1, "Örgün öğretim"), (2, "İkinci Öğretim"), (3, "Yüksek Lisans"), (4, ("Doktora")))
 
 class User(AbstractUser):
+    #overrides abstract base users email attribute to be unique
     email = models.EmailField(unique=True)
+
+    #other attributes to be stored in db
     birth_date = models.DateField(blank=True, null=True)
     student_number = models.IntegerField(blank=True, null=True)
     faculty = models.CharField(max_length=100, blank=True, null=True)

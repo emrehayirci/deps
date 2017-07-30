@@ -2,6 +2,7 @@ from django.db import models
 from profiles.models import User
 # Create your models here.
 
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
