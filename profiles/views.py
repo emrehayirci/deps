@@ -3,7 +3,7 @@ from django.contrib.auth import (
     login as auth_login,
     logout as auth_logout
 )
-from profiles.forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm
 from django.contrib import messages
 
 
@@ -40,6 +40,7 @@ def login(request):
                 request,
                 'Giriş yaptınız.'
             )
+            return redirect('home')
 
     return render(request, './profiles/login.html', {
         'form': form

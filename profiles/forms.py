@@ -19,40 +19,48 @@ class RegisterForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         strip=False,
     )
+
     class Meta:
         model = User
-        fields = ('email','birth_date', 'student_number', 'faculty', 'department', 'grade')
+        fields = ('email', 'username', 'first_name', 'last_name', 'birth_date', 'student_number',
+                  'faculty', 'department', 'grade')
         labels = {
-            'email':'Email Adresiniz',
+            'email': 'Email Adresiniz',
+            'username': 'Kullanıcı Adınız',
+            'first_name': 'İsim',
+            'last_name': 'Soyisim',
             'birth_date': 'Doğum Tarihi',
-            'student_number':'Öğrenci Numarası',
-            'faculty':'Fakülte',
-            'department':'Bölüm',
-            'grade':'Öğrenim Türü'
+            'student_number': 'Öğrenci Numarası',
+            'faculty': 'Fakülte',
+            'department': 'Bölüm',
+            'grade': 'Öğrenim Türü'
         }
         widgets = {
-            'email': forms.TextInput(attrs={'class':'form-control'}),
+            'email': forms.TextInput(attrs={'class': 'form-control'}),
             'birth_date': forms.SelectDateWidget,
-            'student_number': forms.TextInput(attrs={'class':'form-control'}),
-            'faculty': forms.TextInput(attrs={'class':'form-control'}),
-            'department': forms.TextInput(attrs={'class':'form-control'}),
-            'grade': forms.Select(attrs={'class':'form-control'}),
+            'student_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'faculty': forms.TextInput(attrs={'class': 'form-control'}),
+            'department': forms.TextInput(attrs={'class': 'form-control'}),
+            'grade': forms.Select(attrs={'class': 'form-control'}),
             'password': forms.TextInput(attrs={'class': 'form-control'}),
             'password2': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
 class LoginForm(forms.Form):
-    username = forms.CharField(required=True)
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
+    email = forms.CharField(required=True,
+                            label='E-mail Adresiniz')
+    password = forms.CharField(required=True,
+                               widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+                               label="Parola")
 
     def clean(self):
-        username = self.cleaned_data.get("username")
+        email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
 
-        if not username or not password:
+        if not email or not password:
             return self.cleaned_data
 
-        user = authenticate(username=username,
+        user = authenticate(email=email,
                             password=password)
 
         if user:
