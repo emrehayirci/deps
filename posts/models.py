@@ -1,12 +1,13 @@
 from django.db import models
 from profiles.models import User
+from datetime import datetime
 # Create your models here.
 
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
-    creation_date = models.DateTimeField()
+    creation_date = models.DateTimeField(default=datetime.now)
     author = models.ForeignKey(User)
 
 class Comment:

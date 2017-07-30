@@ -14,7 +14,7 @@ def details(request, post_id):
     return render(request, './posts/post.html', {'post': post[0]})
 
 
-#@login_required('login')
+@login_required(login_url='login')
 def create_post(request):
     form = PostCreationForm()
 
@@ -22,7 +22,7 @@ def create_post(request):
         form = PostCreationForm(request.POST)
 
         if form.is_valid():
-            #form.instance.author = request.user
+            form.instance.author = request.user
             form.save()
 
             return redirect('home')
