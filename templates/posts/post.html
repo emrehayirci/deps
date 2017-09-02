@@ -19,6 +19,9 @@
         </div>
         <div class="panel-footer">
             Yazar: {{ comment.author.username }} Tarih: {{ comment.creation_date }}
+            {% if comment.author == request.user %}
+                <a>Sil</a>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
