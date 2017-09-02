@@ -12,6 +12,22 @@
             Yazar: {{ post.author.username }} Tarih: {{ post.creation_date }}
         </div>
     </div>
+    {% for comment in comments %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>{{ comment.body }}</p>
+        </div>
+        <div class="panel-footer">
+            Yazar: {{ comment.author.username }} Tarih: {{ comment.creation_date }}
+        </div>
+    </div>
+    {% endfor %}
+    <h4>Yorumunu Ekle!</h4>
+    <form action="comments/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Paylaş</button>
+    </form>
 
 
 {% endblock %}

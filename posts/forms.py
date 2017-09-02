@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Comment
+from .models import Post, Comment
 
 
 class PostCreationForm(forms.ModelForm):
@@ -18,14 +18,11 @@ class PostCreationForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = Post
-        fields = ['title', 'body']
+        model = Comment
+        fields = ['body']
         labels = {
-            'title': 'Başlık',
-            'body':'İçerik'
+            'body': 'Yorumunuz'
         }
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'})
         }
-
