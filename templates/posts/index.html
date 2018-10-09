@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+    <ul class="list-group">
+    {% for post in posts %}
+        <a href="{{ post.id }}" class="list-group-item">{{ post.title }}</a>
+    {% endfor %}
+    </ul>
+{% endblock %}
