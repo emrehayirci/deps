@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts',
-    'profiles',
-    'tags',
+    'api.posts',
+    'api.profiles',
+    'api.tags',
+    'rest_framework',
     'webpack_loader'
 ]
 
@@ -67,8 +68,7 @@ ROOT_URLCONF = 'deps.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'api/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,7 +97,6 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-
 
 
 # Password validation
@@ -133,5 +132,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "api/static")
 ]
