@@ -1,0 +1,18 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Deps</title>
+  </head>
+  <body>
+
+    <div id="root">
+    </div>
+    <!-- Will find a better way to import chunks from statsfile -->
+        {% render_bundle 'main' %}
+        {% render_bundle 'undefined' %}
+        {% render_bundle 'runtime~main' %}
+  </body>
+</html>
