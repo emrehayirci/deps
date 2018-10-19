@@ -39,8 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'profiles',
-    'tags'
+    'tags',
+    'webpack_loader'
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+    }
+}
 
 AUTH_USER_MODEL = 'profiles.User'
 
@@ -85,7 +93,7 @@ DATABASES = {
         'NAME': 'depsDB',
         'USER': 'dbuser',
         'PASSWORD': 'password',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }
