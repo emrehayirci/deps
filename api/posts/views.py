@@ -1,9 +1,33 @@
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import permissions
+from .serializers import PostSerializer, CommentSerializer
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect, HttpResponse
 from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
-from .forms import CommentForm,PostCreationForm
+from .forms import CommentForm, PostCreationForm
 from datetime import datetime
 
+
+class CustomPermissionModel(permissions.IsAuthenticated):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        else:
+            if obj.author == request.user:
+                return True
+        return False
+
+
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [CustomPermissionModel]
+
+
+class CommentViewSet(ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    permission_classes = CustomPermissionModel
 
 def index(request):
     posts = Post.objects.all()
