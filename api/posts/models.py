@@ -14,7 +14,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, models.SET_NULL, null=True)
+    post = models.ForeignKey(Post, models.SET_NULL, null=True, related_name='comment')
     body = models.TextField()
     creation_date = models.DateTimeField(default=datetime.now)
     update_date = models.DateTimeField(null=True)
